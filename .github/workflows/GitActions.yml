@@ -36,7 +36,7 @@ jobs:
         run: npx playwright --version
 
       - name: Run Playwright UI Test
-        run:  npx playwright test --config=playwright.config.js --project=chromium
+        run:  npx playwright test --project=chromium
       - name: Clean previous Allure results
         shell: pwsh
         run: |
