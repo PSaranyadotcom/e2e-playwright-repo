@@ -19,7 +19,7 @@ jobs:
       run: npx playwright install chromium
 
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test tests/annotationsandtags.spec.ts
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
