@@ -1,32 +1,3 @@
-# name: Playwright Tests
-# on:
-#   push:
-#     branches: [ main, master ]
-#   pull_request:
-#     branches: [ main, master ]
-# jobs:
-#   test:
-#     timeout-minutes: 60
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v4
-#     - uses: actions/setup-node@v4
-#       with:
-#         node-version: lts/*
-#     - name: Install dependencies
-#       run: npm ci
-#     - name: Install Playwright Browsers
-#       run: npx playwright install chromium
-
-#     - name: Run Playwright tests
-#       run: npx playwright test tests/annotationsandtags.spec.ts
-#     - uses: actions/upload-artifact@v4
-#       if: ${{ !cancelled() }}
-#       with:
-#         name: playwright-report
-#         path: playwright-report/
-#         retention-days: 30
-
 name: Playwright Tests
 
 on:
@@ -57,9 +28,7 @@ jobs:
       run: npm install mailosaur --save-dev
 
     - name: Run Playwright tests
-      env:
-        MAILOSAUR_API_KEY: ${{ secrets.MAILOSAUR_API_KEY }}
-      run: npx playwright test tests/annotationsandtags.spec.ts
+      run: npx playwright test 
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
@@ -67,4 +36,3 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-
