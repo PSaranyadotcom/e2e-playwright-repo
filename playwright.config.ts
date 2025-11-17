@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * Read environment variables from file.
@@ -12,9 +14,16 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+
+  globalTimeout:3600000,
+  timeout:30000,
+
+  // outputDir:"something",
+  // testIgnore:"something",
+  maxFailures:10,
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: false,
+  fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -23,13 +32,22 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html']],
+  expect:{
+    timeout:3000
+  },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */            
     // baseURL: 'http://127.0.0.1:3000',
-    screenshot: 'on-first-failure',
+    storageState: 'state.json', 
+    headless:false,
+    video:"retain-on-failure",
+    screenshot: "only-on-failure",
+    viewport:{width:1230,height:670},
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    actionTimeout:5000,
+    navigationTimeout:7000
   },
 
   /* Configure projects for major browsers */
@@ -37,11 +55,14 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      retries:1
     },
+    
 
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
+    //   retries:0
     // },
 
     // {

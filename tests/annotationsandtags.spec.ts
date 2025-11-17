@@ -45,6 +45,7 @@ test('has title6@smoke', async () => {
 
 test('has title6@sanity@reg', async () => {
     console.log("this is my first test")
+    
 })
 test('has title6@slow@fixme', async () => {
     console.log("this is my first test")

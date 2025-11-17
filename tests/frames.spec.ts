@@ -10,7 +10,7 @@ test.afterEach(async ()=>{
 })
 test.describe("frames",()=>{
    
-test("single frames", async ()=>{
+test("single frames", async ()=>{ 
     // await page.goto("https://demo.automationtesting.in/Frames.html");
     // first approach
     await page.frameLocator("iframe[src='SingleFrame.html']").locator("[type='text']").fill("hello!")

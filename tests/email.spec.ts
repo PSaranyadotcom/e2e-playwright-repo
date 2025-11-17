@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 
 import { MailiskClient } from 'mailisk';
 
-test("date picker", async ({page})=>{
+test("email", async ({page})=>{
   
   const mailisk = new MailiskClient({ apiKey: '0a4f708641a5ccfcead36da438ce073a7d782d04eb3b4ef5e0133ee3a939611e' });
 

@@ -14,7 +14,7 @@ test('has title', async ({ page }) => {
         if(mytext?.includes("jQuery") || mytext?.includes(" Bootstrap")){
 await text.click();
         }
-        if(mytext?.includes(" HTML") || mytext?.includes("CSS")){
+        if(mytext?.includes("HTML") || mytext?.includes("CSS")){
             await text.click();
                     }
     }
